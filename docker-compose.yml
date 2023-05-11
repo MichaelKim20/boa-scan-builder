@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  boa-scan-builder:
+    platform: linux/arm64/v8
+    container_name: boa-scan-builder
+    image: boa-scan-builder
+    ports:
+      - "22:22"
+    volumes:
+      - ../boa-scan:/app
+      - mix-cache:/root/.mix
+      - ./scripts:/scripts
+    stdin_open: true
+    tty: true
+    networks:
+      - default_network
+
+networks:
+  default_network:
+    driver: bridge
+
+volumes:
+  mix-cache:
